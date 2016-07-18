@@ -1,11 +1,14 @@
 #include <iostream>
 #include <string>
 #include <unistd.h>
+#include "server.hpp"
+
+#define NUM_THREADS 4
 
 struct Config
 {
     std::string ip;
-    int port;
+    std::string port;
     std::string dir;
 };
 
@@ -21,7 +24,7 @@ Config GetConfig(int argc, char**argv)
                 break;
                 
             case 'p':
-                config.port = atoi(optarg);
+                config.port = optarg;
                 break;
                 
             case 'd':
@@ -42,9 +45,11 @@ int main (int argc, char ** argv)
 {
     auto cfg = GetConfig(argc, argv);
 
-    if(fork() == 0){
+    if(fork() == 0)
+    {
         std::cout << "daemon started" << std::endl;
-        //start server
+        http::server3::server s(cfg.ip, cfg.port, cfg.dir, NUM_THREADS);
+        s.run();
     }
     return 0;
 }
