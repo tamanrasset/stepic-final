@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 SET( BIN final )
 SET( SOURCE_ROOT .)
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY "/home/box/final/")
 project( ${BIN} )
 
 FIND_PACKAGE(Boost REQUIRED COMPONENTS system thread regex)
