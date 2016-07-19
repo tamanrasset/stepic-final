@@ -44,13 +44,6 @@ Config GetConfig(int argc, char**argv)
 int main (int argc, char ** argv)
 {
     auto cfg = GetConfig(argc, argv);
-    
-    logging::add_file_log("sample.log");
-    logging::add_common_attributes();
-
-    using namespace logging::trivial;
-    src::severity_logger<severity_level> lg;
-
 
     if(fork() == 0)
     {
