@@ -54,6 +54,11 @@ void request_handler::handle_request(const request& req, reply& rep)
 
   // Open the file to send back.
   std::string full_path = doc_root_ + request_path;
+  auto pos=full_path.find('?',0);
+  if(pos!=-1)
+  {
+     full_path = full_path.substr(0, pos);
+  }
   std::ifstream is(full_path.c_str(), std::ios::in | std::ios::binary);
   if (!is)
   {
