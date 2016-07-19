@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 SET( BIN final )
 SET( SOURCE_ROOT .)
-#SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY "/home/box/final/")
+SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY "/home/box/final/")
 project( ${BIN} )
 
 FIND_PACKAGE(Boost REQUIRED COMPONENTS log log_setup system thread regex)
@@ -13,7 +13,7 @@ SET(USED_LIBS ${Boost_LIBRARIES})
 INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})
 
-SET( CMAKE_CXX_FLAGS "-std=c++11 -lboost_system -pthread -DBOOST_LOG_DYN_LINK" )
+SET( CMAKE_CXX_FLAGS "-std=c++11 -lboost_system -pthread" )
 aux_source_directory( ${SOURCE_ROOT} SOURCES )
 add_executable( ${BIN} ${SOURCES} )
 TARGET_LINK_LIBRARIES(${BIN} ${USED_LIBS})
